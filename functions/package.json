@@ -11,10 +11,21 @@
   },
   "main": "lib/index.js",
   "dependencies": {
+    "@1amageek/flow": "^0.2.1",
+    "@star__hoshi/orderable": "^0.5.3",
+    "event-response": "^0.2.4",
+    "fire-slack": "^0.2.1",
     "firebase-admin": "~5.8.1",
-    "firebase-functions": "^0.8.1"
+    "firebase-functions": "^0.8.1",
+    "mission-completed": "^0.1.6",
+    "pring": "^0.5.2",
+    "retrycf": "^0.2.4"
   },
   "devDependencies": {
+    "jest": "^22.3.0",
+    "rescue-fire": "^0.2.0",
+    "shana": "^0.1.0",
+    "ts-jest": "^22.0.4",
     "tslint": "^5.8.0",
     "typescript": "^2.5.3"
   },
