@@ -2,7 +2,8 @@ import * as functions from 'firebase-functions'
 import * as admin from 'firebase-admin'
 import { Pring } from 'pring'
 import * as Model from './sampleModel'
-import * as Orderable from '@star__hoshi/orderable'
+// import * as Orderable from '@star__hoshi/orderable'
+import { Orderable } from 'cf-pack'
 
 admin.initializeApp(<admin.AppOptions>functions.config().firebase)
 Pring.initialize(functions.config().firebase)
@@ -13,7 +14,7 @@ Orderable.initialize({
 
 export const paySampleOrder2 = functions.firestore
   .document(`${Model.SampleOrder2.getPath()}/{orderID}`)
-  .onUpdate(async (event) =>  {
+  .onUpdate(async (event) => {
     const orderObject = new Orderable.Functions.OrderObject<Model.SampleOrder2, Model.SampleShop, Model.SampleUser, Model.SampleSKU, Model.SampleProduct, Model.SampleOrderShop, Model.SampleOrderSKU>(event, {
       order: Model.SampleOrder2,
       shop: Model.SampleShop,

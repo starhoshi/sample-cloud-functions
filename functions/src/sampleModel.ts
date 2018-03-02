@@ -1,7 +1,8 @@
 import { Pring, property } from 'pring'
-import * as Orderable from '@star__hoshi/orderable'
-import * as Retrycf from 'retrycf'
-import * as EventResponse from 'event-response'
+// import * as Orderable from '@star__hoshi/orderable'
+import { Orderable, Retrycf, EventResponse } from 'cf-pack'
+// import * as Retrycf from 'retrycf'
+// import * as EventResponse from 'event-response'
 
 export class SampleUser extends Pring.Base implements Orderable.UserProtocol {
   @property stripeCustomerID?: string
@@ -58,8 +59,8 @@ export class SampleOrder2 extends Pring.Base implements Orderable.OrderProtocol 
 
   @property user: FirebaseFirestore.DocumentReference
   @property amount: number = 0
-  @property paidDate: FirebaseFirestore.FieldValue
-  @property expirationDate: FirebaseFirestore.FieldValue = new Date().setHours(new Date().getHours() + 1)
+  @property paidDate?: Date
+  @property expirationDate?: Date
   @property currency?: string
   @property orderSKUs: Pring.ReferenceCollection<SampleOrderSKU> = new Pring.ReferenceCollection(this)
 
@@ -128,7 +129,7 @@ export class RetrySKU extends Pring.Base {
   @property index = 0
 }
 
-interface PaymentProtocol {}
+interface PaymentProtocol { }
 interface WehbookProtocol {
   post(error: any): Promise<any>
 }

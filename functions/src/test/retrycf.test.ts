@@ -15,6 +15,25 @@ beforeAll(() => {
   })
 })
 
+const sleep = (milliseconds: number) => {
+  return new Promise<void>(resolve => {
+    setTimeout(() => resolve(), milliseconds)
+  })
+}
+
+const addOrdersAtOnce = async (testOrders: Model.RetryOrder[]) => {
+  await Promise.all(testOrders.map(testOrder => {
+    return testOrder.save()
+  }))
+}
+
+const addOrdersPer02 = async (testOrders: Model.RetryOrder[]) => {
+  for (const testOrder of testOrders) {
+    await sleep(200)
+    testOrder.save()
+  }
+}
+
 it('order create', async () => {
   jest.setTimeout(1000000)
 
@@ -41,22 +60,3 @@ it('order create', async () => {
 
   expect(true)
 })
-
-const addOrdersAtOnce = async (testOrders: Model.RetryOrder[]) => {
-  await Promise.all(testOrders.map(testOrder => {
-    return testOrder.save()
-  }))
-}
-
-const addOrdersPer02 = async (testOrders: Model.RetryOrder[]) => {
-  for (const testOrder of testOrders) {
-    await sleep(200)
-    testOrder.save()
-  }
-}
-
-const sleep = (milliseconds: number) => {
-  return new Promise<void>(resolve => {
-    setTimeout(() => resolve(), milliseconds)
-  })
-}
